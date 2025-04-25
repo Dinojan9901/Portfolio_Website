@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dinojan Vivekanantharasa | Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-content">
+            <div class="logo">
+                <a href="#">Dinojan V.</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><button id="theme-toggle" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Dinojan Vivekanantharasa</h1>
+            <p>Full-Stack Developer & Computer Engineering Student</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="cta-button">Get in Touch</a>
+                <a href="assets/resume.pdf" class="cta-button secondary" download>Download Resume <i class="fas fa-download"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>I'm a Computer Engineering undergraduate at the University of Ruhuna with a strong foundation in software development, full-stack technologies, machine learning, and artificial intelligence. I'm passionate about developing and optimizing web and mobile applications, enhancing backend performance, and applying data science methodologies.</p>
+                <p>Currently pursuing my BSc.Eng (Honours) in Computer Engineering, graduating in November 2027.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills">
+        <h2>Technical Skills</h2>
+        <div class="skills-content">
+            <div class="skill-category">
+                <h3>Programming</h3>
+                <div class="skill-tags">
+                    <span>Python</span>
+                    <span>C</span>
+                    <span>C++</span>
+                    <span>Java</span>
+                    <span>JavaScript</span>
+                    <span>HTML/CSS</span>
+                    <span>SQL</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Web Development</h3>
+                <div class="skill-tags">
+                    <span>React.js</span>
+                    <span>Node.js</span>
+                    <span>Express.js</span>
+                    <span>Next.js</span>
+                    <span>Django</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Mobile & Software Development</h3>
+                <div class="skill-tags">
+                    <span>Flutter</span>
+                    <span>Dart</span>
+                    <span>Visual Studio</span>
+                    <span>IntelliJ IDEA</span>
+                    <span>VS Code</span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Databases & Tools</h3>
+                <div class="skill-tags">
+                    <span>MongoDB</span>
+                    <span>MySQL</span>
+                    <span>PostgreSQL</span>
+                    <span>Git</span>
+                    <span>GitHub</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <h2>Featured Projects</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-image" id="project1-img"></div>
+                <h3>Automated Paper Grading System</h3>
+                <p>A Next.js and Django-based web application integrated with PostgreSQL to automate short answer grading. Built with a four-member team.</p>
+                <div class="tech-stack">
+                    <span>Next.js</span>
+                    <span>Django</span>
+                    <span>PostgreSQL</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/your-username/paper-grading" target="_blank"><i class="fab fa-github"></i> Code</a>
+                    <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Demo</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image" id="project2-img"></div>
+                <h3>Healthcare Mobile Application</h3>
+                <p>Flutter and Dart-based mobile application for doctor-patient interactions and appointment scheduling. Developed with a two-member team.</p>
+                <div class="tech-stack">
+                    <span>Flutter</span>
+                    <span>Dart</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/your-username/healthcare-app" target="_blank"><i class="fab fa-github"></i> Code</a>
+                    <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Demo</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image" id="project3-img"></div>
+                <h3>ECG Image Classification</h3>
+                <p>Developed a CNN-based system for heart disease prediction using ECG image classification. Collaborative project with a 4-member team.</p>
+                <div class="tech-stack">
+                    <span>Python</span>
+                    <span>CNN</span>
+                    <span>Machine Learning</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/your-username/ecg-classification" target="_blank"><i class="fab fa-github"></i> Code</a>
+                    <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Paper</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image" id="project4-img"></div>
+                <h3>Smart Home Automation System</h3>
+                <p>Embedded systems project for home automation, developed collaboratively with a 4-member team.</p>
+                <div class="tech-stack">
+                    <span>Embedded Systems</span>
+                    <span>IoT</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/your-username/smart-home" target="_blank"><i class="fab fa-github"></i> Code</a>
+                    <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Demo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Get in Touch</h2>
+        <div class="contact-content">
+            <div class="contact-info">
+                <p><i class="fas fa-envelope"></i> dinojv21@gmail.com</p>
+                <p><i class="fas fa-phone"></i> 0779703874</p>
+            </div>
+            <div class="social-links">
+                <a href="https://linkedin.com/in/dinojan" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/Dinojan9901" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://twitter.com/your-username" target="_blank"><i class="fab fa-twitter"></i></a>
+            </div>
+            <form id="contact-form">
+                <div class="form-group">
+                    <input type="text" id="name" placeholder="Name" required>
+                    <span class="error-message"></span>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" placeholder="Email" required>
+                    <span class="error-message"></span>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" placeholder="Message" required></textarea>
+                    <span class="error-message"></span>
+                </div>
+                <button type="submit" class="submit-button">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Dinojan Vivekanantharasa. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
