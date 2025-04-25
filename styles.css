@@ -251,25 +251,55 @@ section h2 {
 }
 
 #project1-img {
-    background-image: url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');
+    background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80'); /* Automated Paper Grading System - code/ai */
     background-size: cover;
     background-position: center;
 }
 
 #project2-img {
-    background-image: url('https://images.unsplash.com/photo-1505236858219-8359eb29e329?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');
+    background-image: url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80'); /* Library Management System - library/books */
     background-size: cover;
     background-position: center;
 }
 
 #project3-img {
-    background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');
+    background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80'); /* AI Assistant - chatbot/ai */
     background-size: cover;
     background-position: center;
 }
 
 #project4-img {
-    background-image: url('https://images.unsplash.com/photo-1585503418537-88331351ad99?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');
+    background-image: url('https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80'); /* Portfolio Website - desk/laptop */
+    background-size: cover;
+    background-position: center;
+}
+
+#project5-img {
+    background-image: url('https://images.unsplash.com/photo-1510915228340-29c85a43dcfe?auto=format&fit=crop&w=600&q=80'); /* File Sharing App - file transfer */
+    background-size: cover;
+    background-position: center;
+}
+
+#project6-img {
+    background-image: url('https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80'); /* Healthcare App - healthcare */
+    background-size: cover;
+    background-position: center;
+}
+
+#project7-img {
+    background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80'); /* Contact Management - contacts */
+    background-size: cover;
+    background-position: center;
+}
+
+#project8-img {
+    background-image: url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80'); /* Hostel Management - buildings */
+    background-size: cover;
+    background-position: center;
+}
+
+#project9-img {
+    background-image: url('https://images.unsplash.com/photo-1515168833906-d2a3b82b302a?auto=format&fit=crop&w=600&q=80'); /* Phone Book - phone */
     background-size: cover;
     background-position: center;
 }
