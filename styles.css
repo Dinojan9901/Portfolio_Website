@@ -427,6 +427,46 @@ section h2 {
     background-color: var(--secondary-color);
 }
 
+/* New Sections Styles */
+.education, .volunteer, .achievements, .referees {
+    padding: 5rem 1rem;
+    background-color: var(--background-color);
+}
+
+.education-content, .volunteer-content, .referees-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.education-entry, .volunteer-entry, .referee-entry {
+    background: var(--card-background);
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.achievements ul {
+    max-width: 800px;
+    margin: 0 auto;
+    list-style: disc;
+    padding-left: 1.5rem;
+}
+
+.achievements li {
+    margin-bottom: 0.5rem;
+}
+
+/* Responsive adjustments for new sections */
+@media (max-width: 768px) {
+    .education-content, .volunteer-content, .referees-content {
+        display: block;
+        padding: 0 1rem;
+    }
+}
+
 /* Footer */
 footer {
     background-color: var(--text-color);
