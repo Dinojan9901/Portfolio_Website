@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://dinojan9901.github.io/Portfolio_Website/',
+    url: 'https://dinojan-v.vercel.app',
     title: 'Dinojan Vivekanantharasa | Full-Stack Developer & AI / DevOps Engineer',
     description: 'Explore production web systems, LLM/RAG pipelines, microservices, and academic publications by Dinojan Vivekanantharasa.',
     siteName: 'Dinojan Vivekanantharasa Portfolio',
@@ -31,15 +31,38 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: 'cover',
+  themeColor: [
+    { media: '(prefers-color-scheme: dark)', color: '#0a0e17' },
+    { media: '(prefers-color-scheme: light)', color: '#f8fafc' },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-theme="dark" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
-        <meta name="theme-color" content="#0a0e17" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var saved = localStorage.getItem('dinojan-theme');
+                  var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+                  document.documentElement.setAttribute('data-theme', theme);
+                } catch(e) {}
+              })();
+            `,
+          }}
+        />
       </head>
       <body>
         {children}

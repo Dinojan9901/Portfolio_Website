@@ -10,7 +10,6 @@ interface NavbarProps {
 
 export default function Navbar({ onOpenResumeModal }: NavbarProps) {
   const [theme, setTheme] = useState<'dark' | 'light'>('dark');
-  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
 
@@ -20,7 +19,7 @@ export default function Navbar({ onOpenResumeModal }: NavbarProps) {
     if (saved) {
       setTheme(saved);
       document.documentElement.setAttribute('data-theme', saved);
-    } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
       setTheme('light');
       document.documentElement.setAttribute('data-theme', 'light');
     } else {
@@ -29,8 +28,6 @@ export default function Navbar({ onOpenResumeModal }: NavbarProps) {
     }
 
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 30);
-
       const sections = ['home', 'experience', 'projects', 'publication', 'skills', 'education', 'achievements', 'contact'];
       const scrollPos = window.scrollY + 200;
 
@@ -77,11 +74,12 @@ export default function Navbar({ onOpenResumeModal }: NavbarProps) {
         right: 0,
         height: 'var(--nav-height)',
         zIndex: 1000,
-        background: isScrolled ? 'var(--bg-glass)' : 'transparent',
-        backdropFilter: isScrolled ? 'blur(16px)' : 'none',
-        WebkitBackdropFilter: isScrolled ? 'blur(16px)' : 'none',
-        borderBottom: isScrolled ? '1px solid var(--border-subtle)' : 'none',
-        transition: 'all 0.3s ease',
+        backgroundColor: 'var(--bg-glass)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
+        borderBottom: '1px solid var(--border-subtle)',
+        transform: 'translateZ(0)',
+        WebkitTransform: 'translateZ(0)',
       }}
     >
       <div
@@ -100,10 +98,10 @@ export default function Navbar({ onOpenResumeModal }: NavbarProps) {
             textDecoration: 'none',
             display: 'flex',
             alignItems: 'center',
-            gap: '0.6rem',
+            gap: '0.65rem',
             fontFamily: 'Outfit',
             fontWeight: 800,
-            fontSize: '1.35rem',
+            fontSize: '1.25rem',
             color: 'var(--text-primary)',
           }}
         >
@@ -117,14 +115,14 @@ export default function Navbar({ onOpenResumeModal }: NavbarProps) {
               alignItems: 'center',
               justifyContent: 'center',
               color: '#ffffff',
-              fontSize: '1rem',
+              fontSize: '0.95rem',
               fontWeight: 800,
-              boxShadow: '0 2px 10px rgba(59, 130, 246, 0.4)',
+              flexShrink: 0,
             }}
           >
             DV
           </span>
-          <span>
+          <span style={{ color: 'var(--text-primary)', fontWeight: 700 }}>
             {portfolioData.personal.shortName}
           </span>
         </a>
@@ -231,7 +229,8 @@ export default function Navbar({ onOpenResumeModal }: NavbarProps) {
               borderRadius: 'var(--radius-sm)',
               color: 'var(--text-primary)',
               cursor: 'pointer',
-              padding: '0.5rem',
+              width: '38px',
+              height: '38px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -243,14 +242,19 @@ export default function Navbar({ onOpenResumeModal }: NavbarProps) {
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle Navigation Menu"
             style={{
-              background: 'transparent',
-              border: 'none',
+              background: 'var(--bg-tertiary)',
+              border: '1px solid var(--border-subtle)',
+              borderRadius: 'var(--radius-sm)',
               color: 'var(--text-primary)',
               cursor: 'pointer',
-              padding: '0.5rem',
+              width: '38px',
+              height: '38px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
             }}
           >
-            {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
+            {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
@@ -270,6 +274,7 @@ export default function Navbar({ onOpenResumeModal }: NavbarProps) {
             display: 'flex',
             flexDirection: 'column',
             gap: '1rem',
+            zIndex: 1001,
           }}
         >
           <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>

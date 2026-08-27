@@ -19,45 +19,18 @@ export default function Hero({ onOpenResumeModal }: HeroProps) {
         display: 'flex',
         alignItems: 'center',
         position: 'relative',
-        paddingTop: 'calc(var(--nav-height) + 2rem)',
-        paddingBottom: '4rem',
+        paddingTop: 'calc(var(--nav-height) + 3rem)',
+        paddingBottom: '4.5rem',
         background: 'var(--gradient-dark-hero)',
         overflow: 'hidden',
+        isolation: 'isolate',
       }}
     >
-      {/* Decorative Blur Orbs */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '20%',
-          right: '10%',
-          width: '320px',
-          height: '320px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(59, 130, 246, 0.15), transparent 70%)',
-          filter: 'blur(40px)',
-          pointerEvents: 'none',
-        }}
-      />
-      <div
-        style={{
-          position: 'absolute',
-          bottom: '15%',
-          left: '5%',
-          width: '280px',
-          height: '280px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(139, 92, 246, 0.15), transparent 70%)',
-          filter: 'blur(40px)',
-          pointerEvents: 'none',
-        }}
-      />
-
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
           
           {/* Status Badge */}
-          <div style={{ display: 'inline-flex', marginBottom: '1.5rem' }}>
+          <div style={{ display: 'inline-flex', marginBottom: '1.75rem' }}>
             <div className="status-indicator">
               <span className="pulse-dot" />
               <span>Available for Software Engineering & AI Roles</span>
@@ -67,8 +40,8 @@ export default function Hero({ onOpenResumeModal }: HeroProps) {
           {/* Main Headline */}
           <h1
             style={{
-              fontSize: 'clamp(2.4rem, 6vw, 4.2rem)',
-              lineHeight: 1.1,
+              fontSize: 'clamp(2.2rem, 5.5vw, 4.2rem)',
+              lineHeight: 1.15,
               marginBottom: '1.25rem',
               letterSpacing: '-0.03em',
             }}
@@ -85,8 +58,8 @@ export default function Hero({ onOpenResumeModal }: HeroProps) {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '0.75rem',
-              fontSize: 'clamp(1.1rem, 2.5vw, 1.45rem)',
+              gap: '0.65rem',
+              fontSize: 'clamp(1rem, 2.2vw, 1.35rem)',
               color: 'var(--text-secondary)',
               fontFamily: 'Outfit',
               fontWeight: 500,
@@ -104,7 +77,7 @@ export default function Hero({ onOpenResumeModal }: HeroProps) {
           {/* Bio Description */}
           <p
             style={{
-              fontSize: 'clamp(1rem, 1.8vw, 1.15rem)',
+              fontSize: 'clamp(0.98rem, 1.8vw, 1.15rem)',
               color: 'var(--text-secondary)',
               lineHeight: 1.7,
               maxWidth: '780px',
@@ -164,7 +137,7 @@ export default function Hero({ onOpenResumeModal }: HeroProps) {
             </a>
 
             {/* Social Icons */}
-            <div style={{ display: 'flex', gap: '0.5rem', marginLeft: '0.5rem' }}>
+            <div style={{ display: 'flex', gap: '0.5rem', marginLeft: '0.25rem' }}>
               <a
                 href={personal.github}
                 target="_blank"
@@ -231,7 +204,7 @@ export default function Hero({ onOpenResumeModal }: HeroProps) {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
               gap: '1.25rem',
             }}
           >
