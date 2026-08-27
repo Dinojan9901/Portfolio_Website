@@ -1,56 +1,55 @@
-# Modern Portfolio Website
+# Dinojan Vivekanantharasa - Modern Next.js Portfolio
 
-A clean, responsive portfolio website built with HTML, CSS, and JavaScript.
+A modern, high-performance personal portfolio website built with **Next.js 14 (App Router)**, **TypeScript**, and **Vanilla CSS** design system.
 
-## Features
+## 🚀 Features
 
-- Modern and responsive design
-- Dark mode / light mode toggle
-- Smooth scrolling navigation
-- Contact form with real-time validation
-- Project showcase section with image previews
-- Resume download option
-- Skills display with interactive elements
-- Social media integration
-- Mobile-friendly layout
+- **Next.js 14 App Router & React**: Lightning-fast performance, static page generation, and responsive client hydration.
+- **Specialized Multi-track CV Center**: Interactive modal allowing recruiters to view and download role-tailored CVs:
+  - 💼 **Full-Stack & General Software Engineering** (`Dinojan_Vivekanantharasa_CV.pdf`)
+  - 🤖 **AI & Machine Learning** (`Dinojan_Vivekanantharasa_AI.pdf`)
+  - ☁️ **DevOps & Cloud Infrastructure** (`Dinojan_Vivekanantharasa_DevOps.pdf`)
+  - 🧪 **QA & Test Automation** (`Dinojan_Vivekanantharasa_QA.pdf`)
+  - 📄 **Standard Resume** (`resume.pdf`)
+- **Professional Experience Spotlight**: Detailed overview of work at **Yarl Ventures (PVT) Ltd** (EDUS LMS, MediMan, CI/CD, AWS).
+- **Academic Research Publication**: Featured peer-reviewed abstract for *AutoGradePro* (Academic Sessions 2026, University of Ruhuna, ISSN 2362-0412) with one-click citation copying.
+- **Interactive Project Filtering**: Live filtering by domain (Full-Stack, AI / ML, Cloud & DevOps, Mobile & Systems).
+- **Comprehensive Skills Matrix**: Categorized tech stacks, hot competencies, non-technical abilities, and languages.
+- **Dark / Light Theme Switcher**: Modern glassmorphic theme system with smooth CSS variable transitions and `localStorage` persistence.
+- **Interactive Contact Form & Direct Links**: Form validation, copy-to-clipboard email pill, and academic referee contacts.
 
-## Getting Started
+---
 
-1. Clone or download this repository
-2. Open `index.html` in your web browser
-3. Customize the content in `index.html` with your own information
-4. Update the styling in `styles.css` if desired
-5. Modify the JavaScript functionality in `script.js` as needed
+## 🛠️ Tech Stack
 
-## Customization
+- **Framework**: Next.js 14
+- **Language**: TypeScript
+- **Styling**: Vanilla CSS with modern Design Tokens & Glassmorphism
+- **Icons**: Lucide React
+- **Fonts**: Inter, Outfit & Fira Code
 
-### To add your projects:
-1. Navigate to the projects section in `index.html`
-2. Copy and paste the project-card div structure
-3. Update the content with your project details
-4. Replace project images by updating the CSS for #project1-img, #project2-img, etc.
-5. Update the GitHub and demo links for each project
+---
 
-### To update your resume:
-1. Replace the file at `assets/resume.pdf` with your own resume PDF
+## 💻 Getting Started
 
-### To modify the color scheme:
-1. Open `styles.css`
-2. Update the CSS variables in the `:root` selector for light mode
-3. Update the CSS variables in the `[data-theme="dark"]` selector for dark mode
+### 1. Install dependencies
+```bash
+npm install
+```
 
-### To add your social media:
-1. Update the social media links in the contact section of `index.html`
-2. Use Font Awesome icons for different platforms
+### 2. Run the development server
+```bash
+npm run dev
+```
 
-## Technologies Used
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-- HTML5
-- CSS3
-- JavaScript
-- Font Awesome Icons
-- Unsplash Images (for project previews)
+### 3. Build for Production
+```bash
+npm run build
+```
 
-## License
+---
 
-This project is open source and available under the MIT License.
+## 📄 License
+This project is open-source and available under the MIT License.
