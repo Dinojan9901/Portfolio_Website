@@ -13,6 +13,7 @@ import RefereesSection from '@/components/RefereesSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import ResumeModal from '@/components/ResumeModal';
+import AnimatedBackground from '@/components/AnimatedBackground';
 
 export default function Home() {
   const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
@@ -22,11 +23,14 @@ export default function Home() {
 
   return (
     <div style={{ position: 'relative', minHeight: '100vh' }}>
+      {/* Living Animated Aurora & Mesh Background */}
+      <AnimatedBackground />
+
       {/* Fixed Navbar */}
       <Navbar onOpenResumeModal={openResumeModal} />
 
       {/* Main Page Flow */}
-      <main>
+      <main style={{ position: 'relative', zIndex: 1 }}>
         <Hero onOpenResumeModal={openResumeModal} />
         <Experience />
         <Projects />
