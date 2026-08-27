@@ -91,7 +91,7 @@ export const portfolioData = {
     bio: 'A passionate Computer Engineering undergraduate with professional experience across full-stack development, AI/ML engineering, and cloud infrastructure. Proven track record of owning systems end-to-end—from designing reactive frontends and scalable APIs, to deploying LLM/RAG pipelines and automating cloud CI/CD infrastructure.',
     email: 'dinojv21@gmail.com',
     phone: '+94 779703874',
-    location: 'Galle & Jaffna, Sri Lanka',
+    location: 'Vavuniya, Sri Lanka',
     github: 'https://github.com/Dinojan9901',
     linkedin: 'https://linkedin.com/in/dinojan',
     stats: [
