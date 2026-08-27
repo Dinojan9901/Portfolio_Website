@@ -19,7 +19,7 @@ export default function Navbar({ onOpenResumeModal }: NavbarProps) {
     if (saved) {
       setTheme(saved);
       document.documentElement.setAttribute('data-theme', saved);
-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+    } else if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
       setTheme('light');
       document.documentElement.setAttribute('data-theme', 'light');
     } else {
@@ -109,18 +109,27 @@ export default function Navbar({ onOpenResumeModal }: NavbarProps) {
             style={{
               width: '36px',
               height: '36px',
-              borderRadius: '10px',
+              borderRadius: '50%',
+              padding: '2px',
               background: 'var(--gradient-brand)',
               display: 'inline-flex',
               alignItems: 'center',
               justifyContent: 'center',
-              color: '#ffffff',
-              fontSize: '0.95rem',
-              fontWeight: 800,
               flexShrink: 0,
+              overflow: 'hidden',
             }}
           >
-            DV
+            <img
+              src="/profile.jpg"
+              alt="Dinojan V."
+              style={{
+                width: '100%',
+                height: '100%',
+                borderRadius: '50%',
+                objectFit: 'cover',
+                display: 'block',
+              }}
+            />
           </span>
           <span style={{ color: 'var(--text-primary)', fontWeight: 700 }}>
             {portfolioData.personal.shortName}

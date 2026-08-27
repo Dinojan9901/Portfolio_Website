@@ -19,7 +19,7 @@ export default function Hero({ onOpenResumeModal }: HeroProps) {
         display: 'flex',
         alignItems: 'center',
         position: 'relative',
-        paddingTop: 'calc(var(--nav-height) + 3rem)',
+        paddingTop: 'calc(var(--nav-height) + 2.5rem)',
         paddingBottom: '4.5rem',
         background: 'var(--gradient-dark-hero)',
         overflow: 'hidden',
@@ -29,8 +29,47 @@ export default function Hero({ onOpenResumeModal }: HeroProps) {
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
           
+          {/* Profile Avatar with Glowing Ring */}
+          <div
+            style={{
+              display: 'inline-flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginBottom: '1.5rem',
+              position: 'relative',
+            }}
+          >
+            <div
+              style={{
+                width: '140px',
+                height: '140px',
+                borderRadius: '50%',
+                padding: '4px',
+                background: 'var(--gradient-brand)',
+                boxShadow: '0 0 35px rgba(59, 130, 246, 0.4), 0 8px 24px rgba(0, 0, 0, 0.25)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+              }}
+            >
+              <img
+                src="/profile.jpg"
+                alt={personal.name}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  borderRadius: '50%',
+                  objectFit: 'cover',
+                  display: 'block',
+                  backgroundColor: 'var(--bg-tertiary)',
+                }}
+              />
+            </div>
+          </div>
+
           {/* Status Badge */}
-          <div style={{ display: 'inline-flex', marginBottom: '1.75rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem' }}>
             <div className="status-indicator">
               <span className="pulse-dot" />
               <span>Available for Software Engineering & AI Roles</span>
