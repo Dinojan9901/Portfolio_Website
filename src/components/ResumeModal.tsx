@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { portfolioData, CVTrack } from '@/data/portfolioData';
-import { X, Download, ExternalLink, Code, Brain, Cloud, ShieldCheck, FileText, CheckCircle2 } from 'lucide-react';
+import { X, Download, ExternalLink, Code, Brain, Cloud, ShieldCheck, FileText, CheckCircle2, Layers, Cpu, Network } from 'lucide-react';
 
 interface ResumeModalProps {
   isOpen: boolean;
@@ -10,7 +10,7 @@ interface ResumeModalProps {
 }
 
 export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
-  const [selectedTrack, setSelectedTrack] = useState<string>('fullstack');
+  const [selectedTrack, setSelectedTrack] = useState<string>('software');
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -42,6 +42,9 @@ export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
       case 'Brain': return <Brain size={20} />;
       case 'Cloud': return <Cloud size={20} />;
       case 'ShieldCheck': return <ShieldCheck size={20} />;
+      case 'Layers': return <Layers size={20} />;
+      case 'Cpu': return <Cpu size={20} />;
+      case 'Network': return <Network size={20} />;
       default: return <FileText size={20} />;
     }
   };
@@ -119,7 +122,7 @@ export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px, 100%), 1fr))',
             gap: '0.85rem',
             marginBottom: '1.75rem',
           }}

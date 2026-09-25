@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { portfolioData } from '@/data/portfolioData';
-import { UserCheck, Mail, Phone, Building2 } from 'lucide-react';
+import { UserCheck, Mail, Building2 } from 'lucide-react';
 
 export default function RefereesSection() {
   const { referees } = portfolioData;
@@ -24,7 +24,7 @@ export default function RefereesSection() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(320px, 100%), 1fr))',
             gap: '2rem',
             maxWidth: '900px',
             margin: '0 auto',
@@ -80,25 +80,7 @@ export default function RefereesSection() {
                 }}
               >
                 <a
-                  href={`mailto:${ref.email}`}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.6rem',
-                    color: 'var(--text-primary)',
-                    textDecoration: 'none',
-                    fontSize: '0.88rem',
-                    transition: 'color 0.2s',
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent-blue)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-primary)')}
-                >
-                  <Mail size={15} color="var(--accent-blue)" />
-                  <span>{ref.email}</span>
-                </a>
-
-                <a
-                  href={`tel:${ref.phone.replace(/\s+/g, '')}`}
+                  href="#contact"
                   style={{
                     display: 'flex',
                     alignItems: 'center',
@@ -106,13 +88,10 @@ export default function RefereesSection() {
                     color: 'var(--text-secondary)',
                     textDecoration: 'none',
                     fontSize: '0.88rem',
-                    transition: 'color 0.2s',
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent-blue)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
                 >
-                  <Phone size={15} color="var(--accent-emerald)" />
-                  <span>{ref.phone}</span>
+                  <Mail size={15} color="var(--accent-blue)" />
+                  <span>Contact details available on request</span>
                 </a>
               </div>
 

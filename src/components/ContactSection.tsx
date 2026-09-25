@@ -17,7 +17,12 @@ export default function ContactSection() {
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [sendError, setSendError] = useState('');
   const [emailCopied, setEmailCopied] = useState(false);
+
+  // Set NEXT_PUBLIC_WEB3FORMS_KEY to deliver messages straight to the inbox.
+  // Without it, the form opens the visitor's email app with the message pre-filled.
+  const web3FormsKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
 
   const validateForm = () => {
     const errs: { [key: string]: string } = {};
@@ -39,23 +44,47 @@ export default function ContactSection() {
     return Object.keys(errs).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const openMailClient = () => {
+    const subject = formData.subject.trim() || `Portfolio message from ${formData.name.trim()}`;
+    const body = `${formData.message.trim()}\n\n${formData.name.trim()}\n${formData.email.trim()}`;
+    window.location.href = `mailto:${personal.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSendError('');
 
     if (!validateForm()) return;
 
-    setIsSubmitting(true);
+    if (!web3FormsKey) {
+      openMailClient();
+      return;
+    }
 
-    // Simulate sending
-    setTimeout(() => {
-      setIsSubmitting(false);
+    setIsSubmitting(true);
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: web3FormsKey,
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          subject: formData.subject.trim() || `Portfolio message from ${formData.name.trim()}`,
+          message: formData.message.trim(),
+        }),
+      });
+      const result = await res.json();
+      if (!res.ok || !result.success) throw new Error(result.message || 'Send failed');
+
       setIsSubmitted(true);
       setFormData({ name: '', email: '', subject: '', message: '' });
-
-      setTimeout(() => {
-        setIsSubmitted(false);
-      }, 5000);
-    }, 1200);
+      setTimeout(() => setIsSubmitted(false), 6000);
+    } catch {
+      setSendError(`Sorry, the message could not be sent. Please email me directly at ${personal.email}.`);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleCopyEmail = () => {
@@ -80,7 +109,7 @@ export default function ContactSection() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(340px, 100%), 1fr))',
             gap: '2.5rem',
             maxWidth: '1050px',
             margin: '0 auto',
@@ -93,7 +122,7 @@ export default function ContactSection() {
                 Contact Information
               </h3>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
-                I am actively considering software engineering and AI internship/full-time opportunities. Drop a message or email me directly!
+                I am open to full-time software engineering, AI, and DevOps roles. Drop a message or email me directly!
               </p>
 
               {/* Direct Info List */}
@@ -345,8 +374,13 @@ export default function ContactSection() {
                   style={{ width: '100%', padding: '0.85rem', marginTop: '0.5rem' }}
                 >
                   <Send size={18} />
-                  <span>{isSubmitting ? 'Sending Message...' : 'Send Message'}</span>
+                  <span>{isSubmitting ? 'Sending Message...' : web3FormsKey ? 'Send Message' : 'Send via Email App'}</span>
                 </button>
+                {sendError && (
+                  <span role="alert" style={{ color: 'var(--accent-rose)', fontSize: '0.85rem' }}>
+                    {sendError}
+                  </span>
+                )}
               </form>
             )}
 

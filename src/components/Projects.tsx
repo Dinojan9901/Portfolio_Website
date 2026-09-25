@@ -68,7 +68,7 @@ export default function Projects() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(340px, 100%), 1fr))',
             gap: '2rem',
           }}
         >
@@ -254,16 +254,28 @@ export default function Projects() {
                     marginTop: 'auto',
                   }}
                 >
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-primary btn-sm"
+                      style={{ flex: 1 }}
+                    >
+                      <ExternalLink size={16} />
+                      <span>Live Demo</span>
+                    </a>
+                  )}
                   {project.githubUrl && (
                     <a
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn btn-secondary btn-sm"
-                      style={{ width: '100%' }}
+                      style={{ flex: 1 }}
                     >
                       <Github size={16} />
-                      <span>View Source Code</span>
+                      <span>Source Code</span>
                     </a>
                   )}
                 </div>

@@ -167,7 +167,7 @@ export default function Hero({ onOpenResumeModal }: HeroProps) {
 
             <button onClick={onOpenResumeModal} className="btn btn-secondary">
               <FileDown size={18} />
-              <span>Download CV (4 Tracks)</span>
+              <span>Download CV</span>
             </button>
 
             <a href="#contact" className="btn btn-outline">

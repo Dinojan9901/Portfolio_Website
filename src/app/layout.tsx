@@ -2,8 +2,9 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://dinojan-v.vercel.app'),
   title: 'Dinojan Vivekanantharasa | Full-Stack Developer & AI / DevOps Engineer',
-  description: 'Portfolio of Dinojan Vivekanantharasa - Computer Engineering undergraduate at University of Ruhuna, Full-Stack Developer, AI/ML Researcher, and Cloud/DevOps Engineer.',
+  description: 'Portfolio of Dinojan Vivekanantharasa - Computer Engineering graduate (University of Ruhuna) and Full-Stack Developer working across web platforms, LLM/RAG systems, data pipelines, and cloud DevOps.',
   keywords: [
     'Dinojan Vivekanantharasa',
     'Full Stack Developer',
@@ -26,8 +27,10 @@ export const metadata: Metadata = {
     description: 'Explore production web systems, LLM/RAG pipelines, microservices, and academic publications by Dinojan Vivekanantharasa.',
     siteName: 'Dinojan Vivekanantharasa Portfolio',
   },
-  icons: {
-    icon: '/favicon.ico',
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Dinojan Vivekanantharasa | Full-Stack Developer & AI / DevOps Engineer',
+    description: 'Production web platforms, LLM/RAG systems, data pipelines, and cloud DevOps.',
   },
 };
 
