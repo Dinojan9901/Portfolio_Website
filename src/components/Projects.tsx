@@ -8,7 +8,9 @@ export default function Projects() {
   const { projects } = portfolioData;
   const [activeCategory, setActiveCategory] = useState<string>('All');
 
-  const categories = ['All', 'Full-Stack', 'AI / ML', 'Cloud & DevOps', 'Mobile & Systems'];
+  // Display order for every Project['category']; categories with no projects are hidden.
+  const categoryOrder: Project['category'][] = ['Full-Stack', 'AI / ML', 'Cloud & DevOps', 'QA & Testing', 'Mobile & Systems'];
+  const categories = ['All', ...categoryOrder.filter((cat) => projects.some((p) => p.category === cat))];
 
   const filteredProjects = activeCategory === 'All'
     ? projects

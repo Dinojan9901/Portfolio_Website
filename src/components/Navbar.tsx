@@ -14,18 +14,8 @@ export default function Navbar({ onOpenResumeModal }: NavbarProps) {
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
-    // Sync with saved preference or system preference
-    const saved = localStorage.getItem('dinojan-theme') as 'dark' | 'light' | null;
-    if (saved) {
-      setTheme(saved);
-      document.documentElement.setAttribute('data-theme', saved);
-    } else if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-      setTheme('light');
-      document.documentElement.setAttribute('data-theme', 'light');
-    } else {
-      setTheme('dark');
-      document.documentElement.setAttribute('data-theme', 'dark');
-    }
+    // The inline script in layout.tsx already resolved and applied the theme; just mirror it
+    setTheme(document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
 
     const handleScroll = () => {
       const sections = ['home', 'experience', 'projects', 'publication', 'skills', 'education', 'achievements', 'contact'];
