@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { portfolioData, Project } from '@/data/portfolioData';
-import { Github, ExternalLink, Sparkles, Filter, CheckCircle2 } from 'lucide-react';
+import { Github, ExternalLink, Box, Sparkles, Filter, CheckCircle2 } from 'lucide-react';
 
 export default function Projects() {
   const { projects } = portfolioData;
@@ -266,6 +266,18 @@ export default function Projects() {
                     >
                       <ExternalLink size={16} />
                       <span>Live Demo</span>
+                    </a>
+                  )}
+                  {project.modelUrl && (
+                    <a
+                      href={project.modelUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-primary btn-sm"
+                      style={{ flex: 1 }}
+                    >
+                      <Box size={16} />
+                      <span>Model</span>
                     </a>
                   )}
                   {project.githubUrl && (

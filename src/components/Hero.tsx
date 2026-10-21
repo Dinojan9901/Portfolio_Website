@@ -106,9 +106,9 @@ export default function Hero({ onOpenResumeModal }: HeroProps) {
               flexWrap: 'wrap',
             }}
           >
-            <span>Full-Stack Software Engineer</span>
+            <span>AI & Full-Stack Developer</span>
             <span style={{ color: 'var(--accent-blue)' }}>•</span>
-            <span>AI / ML & RAG Architect</span>
+            <span>LLM Agents & RAG</span>
             <span style={{ color: 'var(--accent-cyan)' }}>•</span>
             <span>Cloud & DevOps</span>
           </div>
