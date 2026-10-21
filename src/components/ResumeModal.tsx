@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { portfolioData, CVTrack } from '@/data/portfolioData';
+import { trackCvOrProfileClick } from '@/lib/analytics';
 import { X, Download, ExternalLink, Code, Brain, Cloud, ShieldCheck, FileText, CheckCircle2, Layers, Cpu, Network } from 'lucide-react';
 
 interface ResumeModalProps {
@@ -214,6 +215,7 @@ export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-secondary btn-sm"
+              onClick={() => trackCvOrProfileClick('cv', 'cv_modal', currentCV.id)}
             >
               <ExternalLink size={16} />
               <span>Preview in Browser</span>
@@ -222,6 +224,7 @@ export default function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
               href={currentCV.filePath}
               download={currentCV.fileName}
               className="btn btn-primary btn-sm"
+              onClick={() => trackCvOrProfileClick('cv', 'cv_modal', currentCV.id)}
             >
               <Download size={16} />
               <span>Download {currentCV.name.split(' ')[0]} CV</span>

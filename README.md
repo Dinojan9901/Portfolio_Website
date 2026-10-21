@@ -53,6 +53,95 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 npm run build
 ```
 
+### 4. Lint and test
+```bash
+npm run lint
+npm test
+```
+
+---
+
+## 📊 Analytics (Google Analytics 4)
+
+GA4 loads only when `NEXT_PUBLIC_GA_ID` is set. It's set in Vercel's **Production** environment only, so local development and preview deployments send nothing.
+
+### What's tracked
+
+Besides GA4's standard page views, the site sends three events. Their names live in one typed module, [`src/lib/analytics.ts`](src/lib/analytics.ts).
+
+| Event | When it fires | Parameters |
+|---|---|---|
+| `contact_form_submit` | A contact message was delivered (Web3Forms confirmed it). This is the key event. Opening the email-app fallback doesn't count. | none |
+| `project_link_click` | A project's Live Demo, Source Code or Model link | `project` (e.g. `lendlot`, `larkway`), `link_type` (`live`, `source`, `model`), `placement` |
+| `cv_or_profile_click` | A LinkedIn or GitHub link, or a CV preview or download | `target` (`linkedin`, `github`, `cv`), `placement` (`hero`, `contact`, `footer`, `cv_modal`), `cv_track` for CVs |
+
+**No personal data is sent.** Event parameters are fixed labels only; the site never sends a visitor's name, email address or message text. GA4 itself still collects its standard usage data (pages viewed, device, browser, approximate location) and sets analytics cookies.
+
+### Weekly report
+
+[`scripts/ga4_report/ga4_report.py`](scripts/ga4_report/ga4_report.py) uses the official `google-analytics-data` client to pull users, sessions, top pages and the three events. It compares them with the previous period and prints a Markdown report.
+
+**One-time setup:**
+
+1. In the [Google Cloud console](https://console.cloud.google.com/), pick or create a project, then enable the **Google Analytics Data API** (APIs & Services → Library).
+2. Create a service account (IAM & Admin → Service Accounts → Create; it needs no project roles). Open it, then go to Keys → Add key → Create new key → JSON.
+3. Save the key **outside the repo**, e.g. `%USERPROFILE%\.secrets\ga4-service-account.json`. `.gitignore` also blocks `*service-account*.json` and any JSON in `scripts/ga4_report/` in case one lands there by mistake.
+4. In GA4, go to Admin → Property access management → **+** → Add users. Paste the service account's email (`…@….iam.gserviceaccount.com`), choose the **Viewer** role, untick "Notify new users by email" and click Add.
+5. Find the numeric property ID under GA4 Admin → Property settings → Property details. This isn't the `G-…` measurement ID.
+
+**Run it (PowerShell):**
+
+```powershell
+cd scripts\ga4_report
+py -3 -m venv .venv
+.venv\Scripts\python -m pip install -r requirements.txt
+$env:GOOGLE_APPLICATION_CREDENTIALS = "$HOME\.secrets\ga4-service-account.json"
+
+.venv\Scripts\python ga4_report.py --property 123456789          # last 7 complete days
+.venv\Scripts\python ga4_report.py --property 123456789 --start 2026-10-01 --end 2026-10-14 --output "$HOME\ga4-report.md"
+```
+
+The property ID can also come from `GA4_PROPERTY_ID`. If credentials are missing, the key file isn't a service-account key, the account has no access, or the property ID is wrong, the script says so in one line and exits with code 1. With no data yet, it still prints the report, with zeros and a hint.
+
+**Example output** (sample numbers from the test data, not real traffic):
+
+```markdown
+# Portfolio GA4 report
+
+Property 123456789: **2026-10-15 to 2026-10-21**, compared with 2026-10-08 to 2026-10-14.
+
+## Traffic
+
+| Metric | This period | Previous | Change |
+|---|---:|---:|---:|
+| Users | 42 | 30 | +40.0% |
+| Sessions | 57 | 40 | +42.5% |
+
+## Events
+
+| Event | This period | Previous | Change |
+|---|---:|---:|---:|
+| contact_form_submit (key event) | 3 | 0 | new |
+| project_link_click | 25 | 20 | +25.0% |
+| cv_or_profile_click | 12 | 12 | +0.0% |
+
+## Top pages
+
+| Page | Views | Previous |
+|---|---:|---:|
+| `/` | 54 | 38 |
+| `/resume` | 2 | 0 |
+```
+
+The site is a single page, so "Top pages" is mostly `/`. Any other path is a 404 that someone reached through a mistyped or outdated link.
+
+**Tests** run against a mocked client, with no network or credentials:
+
+```powershell
+.venv\Scripts\python -m pip install -r requirements-dev.txt
+.venv\Scripts\python -m pytest
+```
+
 ---
 
 ## 📄 License

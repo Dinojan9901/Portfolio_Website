@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { portfolioData } from '@/data/portfolioData';
+import { trackCvOrProfileClick } from '@/lib/analytics';
 import { ArrowRight, FileDown, Github, Linkedin, Mail, Sparkles, Terminal, MapPin } from 'lucide-react';
 
 interface HeroProps {
@@ -182,6 +183,7 @@ export default function Hero({ onOpenResumeModal }: HeroProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub Profile"
+                onClick={() => trackCvOrProfileClick('github', 'hero')}
                 style={{
                   width: '44px',
                   height: '44px',
@@ -212,6 +214,7 @@ export default function Hero({ onOpenResumeModal }: HeroProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn Profile"
+                onClick={() => trackCvOrProfileClick('linkedin', 'hero')}
                 style={{
                   width: '44px',
                   height: '44px',

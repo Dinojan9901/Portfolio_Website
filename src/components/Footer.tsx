@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { portfolioData } from '@/data/portfolioData';
+import { trackCvOrProfileClick } from '@/lib/analytics';
 import { Github, Linkedin, Mail, ArrowUp, Heart } from 'lucide-react';
 
 export default function Footer() {
@@ -107,6 +108,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
+                onClick={() => trackCvOrProfileClick('github', 'footer')}
                 className="btn btn-secondary btn-sm"
               >
                 <Github size={16} />
@@ -116,6 +118,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
+                onClick={() => trackCvOrProfileClick('linkedin', 'footer')}
                 className="btn btn-secondary btn-sm"
               >
                 <Linkedin size={16} />

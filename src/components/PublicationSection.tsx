@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { portfolioData } from '@/data/portfolioData';
+import { trackProjectLinkClick } from '@/lib/analytics';
 import { BookOpen, Copy, Check, ExternalLink, Award, Users, BookmarkCheck } from 'lucide-react';
 
 export default function PublicationSection() {
@@ -190,6 +191,7 @@ export default function PublicationSection() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn btn-primary btn-sm"
+                    onClick={() => trackProjectLinkClick('autograde-pro', 'source', 'publication')}
                   >
                     <ExternalLink size={16} />
                     <span>View Project Code</span>

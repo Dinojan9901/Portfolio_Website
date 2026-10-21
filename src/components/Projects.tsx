@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { portfolioData, Project } from '@/data/portfolioData';
+import { trackProjectLinkClick } from '@/lib/analytics';
 import { Github, ExternalLink, Box, Sparkles, Filter, CheckCircle2 } from 'lucide-react';
 
 export default function Projects() {
@@ -261,6 +262,7 @@ export default function Projects() {
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => trackProjectLinkClick(project.id, 'live')}
                       className="btn btn-primary btn-sm"
                       style={{ flex: 1 }}
                     >
@@ -273,6 +275,7 @@ export default function Projects() {
                       href={project.modelUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => trackProjectLinkClick(project.id, 'model')}
                       className="btn btn-primary btn-sm"
                       style={{ flex: 1 }}
                     >
@@ -285,6 +288,7 @@ export default function Projects() {
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => trackProjectLinkClick(project.id, 'source')}
                       className="btn btn-secondary btn-sm"
                       style={{ flex: 1 }}
                     >

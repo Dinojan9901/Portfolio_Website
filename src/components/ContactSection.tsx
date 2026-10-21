@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { portfolioData } from '@/data/portfolioData';
+import { trackContactFormSubmit, trackCvOrProfileClick } from '@/lib/analytics';
 import { Mail, Phone, MapPin, Send, Check, Copy, Github, Linkedin, MessageSquare } from 'lucide-react';
 
 export default function ContactSection() {
@@ -77,6 +78,8 @@ export default function ContactSection() {
       const result = await res.json();
       if (!res.ok || !result.success) throw new Error(result.message || 'Send failed');
 
+      // Only a confirmed delivery counts; the mail-app fallback can't tell us if a message was sent.
+      trackContactFormSubmit();
       setIsSubmitted(true);
       setFormData({ name: '', email: '', subject: '', message: '' });
       setTimeout(() => setIsSubmitted(false), 6000);
@@ -205,6 +208,7 @@ export default function ContactSection() {
                     rel="noopener noreferrer"
                     className="btn btn-secondary btn-sm"
                     style={{ flex: 1 }}
+                    onClick={() => trackCvOrProfileClick('linkedin', 'contact')}
                   >
                     <Linkedin size={16} />
                     <span>LinkedIn</span>
@@ -215,6 +219,7 @@ export default function ContactSection() {
                     rel="noopener noreferrer"
                     className="btn btn-secondary btn-sm"
                     style={{ flex: 1 }}
+                    onClick={() => trackCvOrProfileClick('github', 'contact')}
                   >
                     <Github size={16} />
                     <span>GitHub</span>

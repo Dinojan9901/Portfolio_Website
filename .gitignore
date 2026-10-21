@@ -31,6 +31,14 @@ lerna-debug.log*
 .env.test.local
 .env.production.local
 
+# GA4 report script: service-account keys (never commit), virtualenv and Python caches
+*service-account*.json
+scripts/ga4_report/*.json
+scripts/ga4_report/.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+
 # Vercel & Deployment
 .vercel
 

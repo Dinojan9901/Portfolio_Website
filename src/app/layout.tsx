@@ -1,5 +1,9 @@
 import type { Metadata, Viewport } from 'next';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import './globals.css';
+
+// Set only in Vercel's Production environment, so local dev and preview deployments send nothing.
+const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://dinojan-v.vercel.app'),
@@ -70,6 +74,7 @@ export default function RootLayout({
       <body>
         {children}
       </body>
+      {gaId && <GoogleAnalytics gaId={gaId} />}
     </html>
   );
 }
