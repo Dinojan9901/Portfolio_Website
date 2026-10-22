@@ -144,5 +144,90 @@ The site is a single page, so "Top pages" is mostly `/`. Any other path is a 404
 
 ---
 
+## 🤝 Event leads → HubSpot
+
+[`scripts/hubspot_leads/hubspot_leads.py`](scripts/hubspot_leads/hubspot_leads.py) cleans a messy event-lead CSV and upserts the leads into HubSpot as contacts.
+
+**Cleaning:**
+- **Headers:** messy names (`E-mail`, `Email Address`, `Full Name`, `Organisation`, `Position`, …) are mapped to HubSpot's `email`, `firstname`, `lastname`, `company` and `jobtitle`. Other columns are ignored and listed.
+- **Emails:** trimmed, unwrapped (`mailto:`, `<…>`), lowercased and validated. Rejected rows are reported with their line number and the reason.
+- **Names:** full names are split (`Jane Doe`, `Doe, Jane`, `Jane van der Berg`), and ALL-CAPS or all-lowercase names are fixed.
+- **Duplicates:** merged by email. The first row is kept, and its blanks are filled from later rows.
+- **Other formats:** handles comma or semicolon delimiters, Excel's UTF-8 byte-order mark, and Windows-1252 files.
+
+**Uploading:**
+- **Endpoint:** HubSpot CRM v3 `POST /crm/v3/objects/contacts/batch/upsert`, matched on email (`idProperty=email`), 100 contacts per request.
+- **Values sent:** only non-empty values, so an upload never blanks a field that's already set in HubSpot.
+- **Retries:** a 429 is retried using `Retry-After`. When that header is missing, the script waits HubSpot's rate-limit window, backing off further each time. 5xx and network errors are retried the same way. The daily limit isn't retried, because waiting can't help until it resets.
+- **Errors:** a bad token (401) or a missing scope (403) gives one clear line, which names the missing scope.
+
+### HubSpot access token
+
+HubSpot is replacing legacy private apps with **service keys**. New accounts (created on or after 28 Sep 2026) can't create legacy private apps, and existing accounts lose the option on 26 Oct 2026. Existing private-app tokens keep working.
+
+1. In HubSpot, go to **Development → Keys → Service keys → Create service key**. You need to be a super admin or have Developer tools access.
+2. Name it (e.g. `Lead import`), click **Add new scope**, select **`crm.objects.contacts.read`** and **`crm.objects.contacts.write`**, then click **Create**.
+3. Open the key, click **Show → Copy**, and set it for the current terminal only. Never put it in a file in the repo:
+   ```powershell
+   $env:HUBSPOT_ACCESS_TOKEN = "pat-..."
+   ```
+
+### Run it (PowerShell)
+
+```powershell
+cd scripts\hubspot_leads
+py -3 -m venv .venv
+.venv\Scripts\python -m pip install -r requirements.txt
+
+.venv\Scripts\python hubspot_leads.py sample_leads.csv --dry-run   # clean + plan, sends nothing
+.venv\Scripts\python hubspot_leads.py leads.csv                    # clean + upsert to HubSpot
+```
+
+The cleaned file is written next to the input as `<name>.clean.csv`; use `--output` to choose another path. `.gitignore` blocks lead CSVs (except the fake sample), every `*.clean.csv`, `*.token` files and `.env.*` files, because real lead data is personal data.
+
+**Example: `--dry-run` on the sample** (fake `@example.com` leads only):
+
+```text
+Rows in:     14
+Valid:       6  (written to sample_leads.clean.csv)
+Duplicates:  2  (merged by email)
+Invalid:     5
+  line 5: missing email
+  line 6: email must contain exactly one @ (not-an-email)
+  line 7: invalid email format (sofia.marquez@example)
+  line 12: email must contain exactly one @ (two@@example.com)
+  line 14: email contains a space (maya.ross @example.com)
+Blank rows:  1  (skipped)
+Columns:     "E-mail Address" -> email, "Full Name" -> firstname + lastname, "Company Name" -> company, "Job Title" -> jobtitle
+Ignored:     Phone, Notes
+
+Dry run: would upsert 6 contacts to HubSpot in 1 batch(es) of up to 100, matched on email. Nothing was sent.
+```
+
+**Tested against a real (free) HubSpot account** with the sample file. The first run reported `6 created, 0 updated`. Running it again reported `0 created, 6 updated`: the upsert matched the same contacts by email instead of duplicating them.
+
+### As an MCP tool
+
+[`mcp_server.py`](scripts/hubspot_leads/mcp_server.py) exposes the same functions over MCP (stdio) as two tools:
+- **`clean_leads`** cleans a CSV; nothing leaves the machine.
+- **`upload_leads`** is a **dry run unless called with `dry_run: false`**.
+
+The token is read from the server's own environment and is never a tool argument, so it can't end up in a model's context. Only `.csv` files can be read or written. To add it to Claude Code:
+
+```powershell
+claude mcp add hubspot-leads -e HUBSPOT_ACCESS_TOKEN=$env:HUBSPOT_ACCESS_TOKEN -- "$PWD\.venv\Scripts\python.exe" "$PWD\mcp_server.py"
+```
+
+`-e` saves the token in Claude Code's own config file in your user profile. That's outside the repo, but it's stored in plain text, so rotate the key if that machine is shared or compromised.
+
+**Tests** use a fake HTTP session (and the MCP SDK's own in-process client), so they need no network or token:
+
+```powershell
+.venv\Scripts\python -m pip install -r requirements-dev.txt
+.venv\Scripts\python -m pytest
+```
+
+---
+
 ## 📄 License
 This project is open-source and available under the MIT License.

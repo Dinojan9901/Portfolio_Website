@@ -39,6 +39,16 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 
+# HubSpot leads script: tokens, real lead files and cleaned output are personal data or secrets.
+# Only the fake sample CSV is committed.
+*.token
+.env.*
+!.env.example
+scripts/hubspot_leads/.venv/
+scripts/hubspot_leads/*.csv
+!scripts/hubspot_leads/sample_leads.csv
+*.clean.csv
+
 # Vercel & Deployment
 .vercel
 

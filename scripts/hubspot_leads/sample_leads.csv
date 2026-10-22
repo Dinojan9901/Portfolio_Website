@@ -1,0 +1,15 @@
+E-mail Address,Full Name,Company Name,Job Title,Phone,Notes
+priya.nair@example.com,Priya Nair,Northwind Traders,Marketing Manager,555-0101,Visited booth
+  JAMES.OKAFOR@EXAMPLE.COM ,JAMES OKAFOR,Contoso Ltd,,555-0102,
+lin.wei@example.com,"wei, lin",Fabrikam,CTO,555-0103,Asked for a demo
+,No Email Person,Tailspin Toys,Intern,555-0104,
+not-an-email,Bad Address,Tailspin Toys,Analyst,555-0105,
+sofia.marquez@example,Sofia Marquez,Adventure Works,Designer,555-0106,
+James.Okafor@example.com,James Okafor,,  Data   Engineer ,555-0102,Second scan at talk
+,,,,,
+mailto:ana.lopez@example.com,Ana María López,Adventure Works,Product Owner,555-0107,
+prince@example.com,Prince,,Speaker,,
+two@@example.com,Double At,Contoso Ltd,Engineer,555-0108,
+<sam.taylor@example.com>,Sam Taylor,"Litware, Inc.",Sales Lead,555-0109,
+maya.ross @example.com,Maya Ross,Fabrikam,Recruiter,555-0110,
+priya.nair@example.com,Priya Nair,Northwind Traders Ltd,,555-0101,Duplicate registration
