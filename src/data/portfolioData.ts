@@ -90,7 +90,7 @@ export const portfolioData = {
     bio: 'A Computer Engineering graduate with a year of professional full-stack experience building features for two live production platforms. I work across React/TypeScript frontends, Node.js APIs, LLM and RAG systems, event-driven data pipelines, and the CI/CD that ships them, delivering features within Agile teams.',
     email: 'dinojv21@gmail.com',
     phone: '+94 779703874',
-    location: 'Vavuniya, Sri Lanka',
+    location: 'Sri Lanka',
     github: 'https://github.com/Dinojan9901',
     linkedin: 'https://linkedin.com/in/dinojan',
     stats: [
@@ -652,14 +652,14 @@ export const portfolioData = {
       period: 'Feb 2022 - Sep 2026',
       details: [
         'Relevant Coursework: Data Structures and Algorithms, Software Engineering Principles, Object-Oriented Design Patterns, Cloud Computing, Operating Systems, Database Systems, Network Programming, High Performance Computing.',
-        'Soft Skill Development (2022 - 2024).',
+        'Certificate Course in Soft Skills Development (2022 - 2024), Career Guidance Unit: communication, leadership, problem solving.',
       ],
     },
     {
       degree: 'GCE Advanced Level (Physical Science Stream)',
       institution: 'V/Vavuniya Tamil Madhya Maha Vidyalayam',
-      period: 'Completed Aug 2019',
-      details: ['Combined Mathematics, Physics, Chemistry'],
+      period: 'Completed Oct 2020',
+      details: ['Combined Mathematics, Physics, Chemistry (Results: A, C, S)'],
     },
   ] as Education[],
 
